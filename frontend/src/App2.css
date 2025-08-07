@@ -1,0 +1,164 @@
+.right-wrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.logo2 {
+    position: absolute;
+    left: 1.5%;
+    top: 3%;
+    user-select: none;
+    cursor: pointer;
+}
+
+.accaunt {
+    background: transparent;
+    position: absolute;
+    top: 2%;
+    right: 1.5%;
+    user-select: none;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.text-area {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+    padding-left: 10px;
+    padding-right: 50px;
+    padding-top: 5px;
+    background-color: #1a1a1a;
+    color: #999999;
+    user-select: none;
+    box-sizing: border-box;
+    resize: none;
+}
+
+.textarea-wrapper {
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 40%;
+    height: 15%;
+    z-index: 2;
+    transition: 1.5s;
+}
+
+.inside-button {
+    user-select: none;
+    position: absolute;
+    background: transparent;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    bottom: 10px;
+    right: 10px;
+}
+
+.bottom {
+    position: absolute;
+    top: 90%;
+}
+
+.question {
+    align-self: flex-end;
+    max-width: 50%;
+    margin-top: 10px;
+    background-color: #1a1a1a;
+    padding: 10px;
+    border-radius: 10px;
+    color: #999999;
+    overflow-wrap: anywhere;
+    font-size: 16px;
+}
+
+.answer {
+    align-self: flex-start;
+    max-width: 70%;
+    color: #999999;
+    font-size: 16px;
+    overflow-wrap: anywhere;
+}
+
+.load {
+    align-self: flex-start;
+    width: 20px;
+    height: 20px;
+    border: 3px dashed #999999;
+    border-radius: 50%;
+    user-select: none;
+    font-size: 16px;
+    animation: rotate 2s infinite linear;
+    overflow-wrap: anywhere;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.content {
+    position: absolute;
+    left: 50%;
+    top: 7%;
+    width: 40%;
+    height: 73%;
+    transform: translate(-50%, 0%);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: none;
+    behavior: smooth;
+}
+
+.text-area::-webkit-scrollbar {
+    width: 6px;
+}
+
+.text-area::-webkit-scrollbar-track {
+    background: #1a1a1a;
+    border-radius: 10px;
+    width: 90%;
+}
+
+.text-area::-webkit-scrollbar-thumb {
+    background-color: white;
+    border-radius: 20px;
+}
+
+.content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.content::-webkit-scrollbar-track {
+    background: black;
+    border-radius: 10px;
+    width: 90%;
+}
+
+.content::-webkit-scrollbar-thumb {
+    background-color: white;
+    border-radius: 20px;
+}

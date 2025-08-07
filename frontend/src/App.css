@@ -1,0 +1,150 @@
+body {
+    background-color: #000000;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    font-family: 'Roboto', sans-serif;
+}
+
+.background-text {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 10vw;
+    color: white;
+    opacity: 0.1;
+    z-index: -1;
+    user-select: none;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.alt {
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 24px;
+    margin-left: 10px;
+}
+
+nav {
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    color: #CCCCCC;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+nav a:hover {
+    color: #FFFFFF;
+}
+
+.login, .build-api {
+    background: transparent;
+    border: 1px solid #FFFFFF;
+    color: #FFFFFF;
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    top: 60%;
+    transform: translate(-50%, -50%);
+    background-color: #1A1A1A;
+    border-radius: 25px;
+    padding: 10px;
+    width: 500px;
+}
+
+.display_none {
+    display: none;
+}
+
+.search-bar input {
+    background: transparent;
+    border: none;
+    color: #999999;
+    font-size: 16px;
+    flex-grow: 1;
+    outline: none;
+}
+
+.search-button {
+    background: transparent;
+    border: 1px solid #FFFFFF;
+    color: #FFFFFF;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.tagline {
+    color: #FFFFFF;
+    font-size: 18px;
+    font-weight: 500;
+    max-width: 600px;
+    margin-top: 20px;
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.footer-left {
+    display: flex;
+    align-items: center;
+}
+
+.arrow {
+    color: #FFFFFF;
+    font-size: 20px;
+}
+
+.footer-right {
+    display: flex;
+    gap: 20px;
+}
