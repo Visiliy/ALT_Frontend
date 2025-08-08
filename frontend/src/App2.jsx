@@ -52,6 +52,8 @@ const App2 = () => {
                         className="text-area"
                         placeholder="Ask ALT something about physics"
                     />
+                    <button className="deep_think">DeepThink</button>
+                    <button className="deeper_think">DeeperThink</button>
                     <button className="inside-button" onClick={click}>→</button>
                 </div>
                 <div className="content">
