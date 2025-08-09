@@ -50,7 +50,7 @@ function App() {
                 </div>
                 <nav>
                     <a href="#">ABOUT</a>
-                    <a href="#">AUTHOR</a>
+                    <a href="#">AUTHORS</a>
                     <a href="#">TECHNOLOGIES</a>
                 </nav>
                 <button className="login" onClick={openRegForm}>LOGIN</button>
