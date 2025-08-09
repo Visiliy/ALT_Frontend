@@ -13,6 +13,10 @@ function App() {
         setRegForm(!regForm);
     }
 
+    const toPay = () => {
+        location.href = '/alt_pay';
+    }
+
     const openWarning = () => {
         const trimmed = message.trim();
         if (trimmed.length === 0) {
@@ -73,7 +77,7 @@ function App() {
                 </div>
                 <div className={`subscription-panel ${regForm ? 'display_none' : ''}`}>
                     <div className="bg"></div>
-                    <button className="subscription-btn">SUBSCRIPTION</button>
+                    <button className="subscription-btn" onClick={toPay}>SUBSCRIPTION</button>
                 </div>
             </main>
             <footer></footer>
