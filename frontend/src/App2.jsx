@@ -1,10 +1,47 @@
+import { useState } from "react";
 import "./App2.css";
+import img_logo from "src/frontend/src/components/IMG/img_logo.png"
 import axios from "axios";
 
 const App2 = () => {
 
+    const [cnt1, setCnt1] = useState(false);
+    const [cnt2, setCnt2] = useState(false);
+
     const toHome = () => {
         location.href = "/";
+    }
+
+    const click2 = () => {
+        const deeper_think = document.querySelector(".deeper_think");
+        const deep_think = document.querySelector(".deep_think");
+        if (!cnt1) {
+            deep_think.classList.add("new_design");
+            if (cnt2) {
+                deeper_think.classList.remove("new_design");
+                setCnt2(!cnt2);
+            }
+        } else {
+            deep_think.classList.remove("new_design");
+        }
+        setCnt1(!cnt1);
+        
+    }
+
+    const click3 = () => {
+        const deeper_think = document.querySelector(".deeper_think");
+        const deep_think = document.querySelector(".deep_think");
+        if (!cnt2) {
+            deeper_think.classList.add("new_design");
+            if (cnt1) {
+                deep_think.classList.remove("new_design");
+                setCnt1(!cnt1);
+            }
+        } else {
+            deeper_think.classList.remove("new_design");
+        }
+        setCnt2(!cnt2);
+        
     }
 
     const click = () => {
@@ -44,7 +81,10 @@ const App2 = () => {
         <>
             <div className="right-wrapper">
                 <div className="logo2">
-                    <span className="alt" onClick={toHome}>ThinkerAI</span>
+                    <span className="alt" onClick={toHome}>
+                        <img src={img_logo} className="img_logo"/>
+                        ThinkerAI
+                    </span>
                 </div>
                 <button className="accaunt">ACCOUNT</button>
                 <div className="textarea-wrapper">
@@ -52,8 +92,8 @@ const App2 = () => {
                         className="text-area"
                         placeholder="Ask ALT something about physics"
                     />
-                    <button className="deep_think">DeepThink</button>
-                    <button className="deeper_think">DeeperThink</button>
+                    <button className="deep_think" onClick={click2}>DeepThink</button>
+                    <button className="deeper_think" onClick={click3}>DeeperThink</button>
                     <button className="inside-button" onClick={click}>→</button>
                 </div>
                 <div className="content">
