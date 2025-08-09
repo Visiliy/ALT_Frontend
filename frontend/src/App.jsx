@@ -55,7 +55,7 @@ function App() {
                 <div className={`search-bar ${flag}`}>
                     <input
                         type="text"
-                        placeholder="Ask ALT something about physics"
+                        placeholder="Ask ALT to come up with an idea"
                     />
                     <button className="search-button" onClick={openWarning}>
                         →

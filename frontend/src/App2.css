@@ -157,13 +157,18 @@
     align-self: flex-start;
     width: 20px;
     height: 20px;
+    min-width: 20px;
+    min-height: 20px;
+    max-width: 20px;
+    max-height: 20px;
     border: 3px dashed #999999;
     margin-bottom: 20px;
     border-radius: 50%;
     user-select: none;
     font-size: 16px;
     animation: rotate 2s infinite linear;
-    overflow-wrap: anywhere;
+    box-sizing: border-box;
+    flex-shrink: 0;
 }
 
 @keyframes rotate {
@@ -186,7 +191,7 @@
     flex-direction: column;
     overflow-y: auto;
     overflow-x: none;
-    behavior: smooth;
+    scroll-behavior: smooth;
 }
 
 .text-area::-webkit-scrollbar {
@@ -219,7 +224,6 @@
     border-radius: 20px;
 }
 
-/* Медиа-запросы для адаптивности */
 @media (max-width: 768px) {
     .logo2 {
         left: 5px;

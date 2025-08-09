@@ -169,7 +169,6 @@ footer {
     gap: 20px;
 }
 
-/* Медиа-запросы для адаптивности */
 @media (max-width: 768px) {
     .logo {
         left: 5px;

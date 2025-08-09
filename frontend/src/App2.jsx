@@ -44,10 +44,52 @@ const App2 = () => {
         
     }
 
+    const typeWriter = (element, text, speed = 50) => {
+        const words = text.split(' ');
+        let currentWordIndex = 0;
+        
+        const typeNextWord = () => {
+            if (currentWordIndex < words.length) {
+                if (currentWordIndex === 0) {
+                    element.innerText = words[currentWordIndex];
+                } else {
+                    element.innerText += ' ' + words[currentWordIndex];
+                }
+                currentWordIndex++;
+                
+                const content = document.querySelector(".content");
+                content.scrollTo({
+                    top: content.scrollHeight,
+                    behavior: 'smooth'
+                });
+                
+                setTimeout(typeNextWord, speed);
+            }
+        };
+        
+        typeNextWord();
+    };
+
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            if (e.shiftKey) {
+                return;
+            } else {
+                e.preventDefault();
+                click();
+            }
+        }
+    }
+
     const click = () => {
         const textareaForm = document.querySelector(".textarea-wrapper");
         const textarea = document.querySelector(".text-area");
         const content = document.querySelector(".content");
+        
+        if (!textarea.value.trim()) {
+            return;
+        }
+        
         textareaForm.classList.add("bottom");
 
         const question = document.createElement("p");
@@ -56,11 +98,19 @@ const App2 = () => {
         content.appendChild(question);
         let cnt = textarea.value;
         textarea.value = "";
-        content.scrollTop = content.scrollHeight;
+        content.scrollTo({
+            top: content.scrollHeight,
+            behavior: 'smooth'
+        });
 
         const load = document.createElement("div");
         load.className = "load";
         content.appendChild(load);
+        content.scrollTo({
+            top: content.scrollHeight,
+            behavior: 'smooth'
+        });
+        
         axios
             .post("http://127.0.0.1:8070/request_to_model", {
                 request: cnt
@@ -69,8 +119,9 @@ const App2 = () => {
                 load.remove();
                 const answer = document.createElement("p");
                 answer.className = "answer";
-                answer.innerText = response.data;
                 content.appendChild(answer);
+                
+                typeWriter(answer, response.data[0], 80);
             })
             .catch((error) => {
                 console.error("Error:", error);
@@ -90,7 +141,8 @@ const App2 = () => {
                 <div className="textarea-wrapper">
                     <textarea
                         className="text-area"
-                        placeholder="Ask ALT something about physics"
+                        placeholder="Ask ALT to come up with an idea"
+                        onKeyDown={handleKeyDown}
                     />
                     <button className="deep_think" onClick={click2}>DeepThink</button>
                     <button className="deeper_think" onClick={click3}>DeeperThink</button>
