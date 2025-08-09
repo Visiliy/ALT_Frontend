@@ -12,6 +12,10 @@ const App2 = () => {
         location.href = "/";
     }
 
+    const toAccount = () => {
+        location.href = "/account"
+    }
+
     const click2 = () => {
         const deeper_think = document.querySelector(".deeper_think");
         const deep_think = document.querySelector(".deep_think");
@@ -137,7 +141,7 @@ const App2 = () => {
                         ThinkerAI
                     </span>
                 </div>
-                <button className="accaunt">ACCOUNT</button>
+                <button className="accaunt" onClick={toAccount}>ACCOUNT</button>
                 <div className="textarea-wrapper">
                     <textarea
                         className="text-area"
