@@ -52,6 +52,7 @@ function App() {
                     <a href="#">ABOUT</a>
                     <a href="#">AUTHORS</a>
                     <a href="#">TECHNOLOGIES</a>
+                    <a href="/alt">CHAT</a>
                 </nav>
                 <button className="login" onClick={openRegForm}>LOGIN</button>
             </header>
