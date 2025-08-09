@@ -6,6 +6,7 @@ import img_logo from "./components/IMG/logo_img.jpeg";
 
 function App() {
     const [warning, setWarning] = useState(true);
+    const [message, setMessage] = useState("");
     const [regForm, setRegForm] = useState(false);
 
     const openRegForm = () => {
@@ -13,14 +14,19 @@ function App() {
     }
 
     const openWarning = () => {
-        if (true) {
-            const searchBar = document.querySelector(".search-bar");
-            document.cookie = `messege=${searchBar.value};max-age=2629743`;
-            location.href = '/alt';
-        } else {
-            setWarning(false);
+        const trimmed = message.trim();
+        if (trimmed.length === 0) {
+            return;
         }
-        
+        document.cookie = `messege=${encodeURIComponent(trimmed)}; max-age=600; path=/`;
+        location.href = '/alt';
+    };
+
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            openWarning();
+        }
     };
 
     const openSearchBar = () => {
@@ -56,6 +62,9 @@ function App() {
                     <input
                         type="text"
                         placeholder="Ask ALT to come up with an idea"
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                        onKeyDown={handleKeyDown}
                     />
                     <button className="search-button" onClick={openWarning}>
                         →

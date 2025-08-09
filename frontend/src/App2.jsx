@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App2.css";
 import img_logo from "./components/IMG/logo_img.jpeg"
 import axios from "axios";
+import { useEffect } from "react";
 
 const App2 = () => {
 
@@ -131,6 +132,23 @@ const App2 = () => {
                 console.error("Error:", error);
             });
     }
+
+    const readCookie = (name) => {
+        const match = document.cookie.match(new RegExp('(?:^|; )' + name.replace(/([.$?*|{}()\[\]\\\/\+^])/g, '\\$1') + '=([^;]*)'));
+        return match ? decodeURIComponent(match[1]) : undefined;
+    };
+
+    useEffect(() => {
+        const initialMessage = readCookie('messege');
+        if (initialMessage) {
+            const textarea = document.querySelector(".text-area");
+            if (textarea) {
+                textarea.value = initialMessage;
+                click();
+                document.cookie = 'messege=; Max-Age=0; path=/';
+            }
+        }
+    }, []);
 
     return (
         <>
