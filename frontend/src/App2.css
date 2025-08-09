@@ -6,10 +6,24 @@
 
 .logo2 {
     position: absolute;
-    left: 1.5%;
-    top: 3%;
+    left: 3px;
+    top: 3px;
     user-select: none;
     cursor: pointer;
+}
+
+.alt {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.logo_img {
+    width: 80px;
+    height: 80px;
 }
 
 .accaunt {
@@ -82,12 +96,14 @@
     border: 1px solid #999999;
     color: #999999;
     border-radius: 15px;
-    width: 15%;
+    width: auto;
+    padding: 8px 15px;
     font-size: 16px;
     height: 35px;
     cursor: pointer;
     bottom: 10px;
     left: 10px;
+    --deep-think-width: auto;
 }
 
 .deeper_think {
@@ -97,12 +113,13 @@
     border: 1px solid #999999;
     color: #999999;
     border-radius: 15px;
-    width: 15%;
+    width: auto;
+    padding: 8px 15px;
     font-size: 16px;
     height: 35px;
     cursor: pointer;
     bottom: 10px;
-    margin-left: 18%;
+    left: calc(40px + 9ch + 10px);
 }
 
 .bottom {
@@ -162,7 +179,7 @@
     position: absolute;
     left: 50%;
     top: 7%;
-    width: 40%;
+    width: min(90%, 600px);
     height: 65%;
     transform: translate(-50%, 0%);
     display: flex;
@@ -200,4 +217,120 @@
 .content::-webkit-scrollbar-thumb {
     background-color: white;
     border-radius: 20px;
+}
+
+/* Медиа-запросы для адаптивности */
+@media (max-width: 768px) {
+    .logo2 {
+        left: 5px;
+        top: 5px;
+    }
+    
+    .logo_img {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .alt {
+        font-size: 18px;
+    }
+    
+    .accaunt {
+        right: 10px;
+        top: 15px;
+        padding: 8px 15px;
+        font-size: 12px;
+    }
+    
+    .textarea-wrapper {
+        width: min(95%, 500px);
+        height: min(18%, 130px);
+    }
+    
+    .content {
+        width: min(95%, 500px);
+        top: 10%;
+        height: 60%;
+    }
+    
+    .deep_think, .deeper_think {
+        font-size: 14px;
+        padding: 6px 12px;
+        height: 30px;
+    }
+    
+    .deeper_think {
+        left: calc(10px + 8ch + 10px);
+    }
+}
+
+@media (max-width: 480px) {
+    .logo2 {
+        left: 2px;
+        top: 2px;
+    }
+    
+    .logo_img {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .alt {
+        font-size: 16px;
+    }
+    
+    .accaunt {
+        right: 5px;
+        top: 10px;
+        padding: 6px 12px;
+        font-size: 11px;
+    }
+    
+    .textarea-wrapper {
+        width: min(98%, 350px);
+        height: min(20%, 140px);
+        top: 45%;
+    }
+    
+    .content {
+        width: min(98%, 350px);
+        top: 15%;
+        height: 50%;
+    }
+    
+    .text-area {
+        font-size: 14px;
+        padding-left: 8px;
+        padding-right: 45px;
+    }
+    
+    .deep_think, .deeper_think {
+        font-size: 12px;
+        padding: 5px 10px;
+        height: 28px;
+    }
+    
+    .deeper_think {
+        left: calc(10px + 7ch + 10px);
+    }
+    
+    .inside-button {
+        width: 30px;
+        height: 30px;
+        font-size: 20px;
+        bottom: 8px;
+        right: 8px;
+    }
+    
+    .question, .answer {
+        font-size: 14px;
+    }
+    
+    .question {
+        max-width: 70%;
+    }
+    
+    .answer {
+        max-width: 85%;
+    }
 }

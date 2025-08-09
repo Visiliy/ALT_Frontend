@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import Warning from "./components/Warning";
 import Login from "./components/Login";
+import img_logo from "./components/IMG/logo_img.jpeg";
 
 function App() {
     const [warning, setWarning] = useState(true);
@@ -36,7 +37,10 @@ function App() {
             <div className="background-text">ALT</div>
             <header>
                 <div className="logo">
-                    <span className="alt">ThinkerAI</span>
+                    <span className="alt">
+                        <img src={img_logo} className="logo_img"/>
+                        ThinkerAI
+                    </span>
                 </div>
                 <nav>
                     <a href="#">ABOUT</a>

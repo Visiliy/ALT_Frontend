@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App2.css";
-import img_logo from "src/frontend/src/components/IMG/img_logo.png"
+import img_logo from "./components/IMG/logo_img.jpeg"
 import axios from "axios";
 
 const App2 = () => {
@@ -82,7 +82,7 @@ const App2 = () => {
             <div className="right-wrapper">
                 <div className="logo2">
                     <span className="alt" onClick={toHome}>
-                        <img src={img_logo} className="img_logo"/>
+                        <img src={img_logo} className="logo_img"/>
                         ThinkerAI
                     </span>
                 </div>
