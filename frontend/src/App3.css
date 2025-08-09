@@ -64,6 +64,23 @@
     transform: translate(-50%, 0%);
 }
 
+.chat-search {
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 30px);
+    max-width: 85%;
+    height: 36px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    padding: 0 12px;
+    background-color: #2a2a2a;
+    color: #ffffff;
+}
+
+
 .statistics {
     position: absolute;
     top: 13%;
@@ -108,9 +125,9 @@
 }
 
 .nick {
-    color: #1a1a1a;
+    color: #ffffff;
     font-size: 24px;
-    background-color: white;
+    background-color: #2a2a2a;
     padding: 3px 8px;
     border-radius: 10px;
     user-select: none;
@@ -133,9 +150,9 @@
 }
 
 .email {
-    color: #1a1a1a;
+    color: #ffffff;
     font-size: 24px;
-    background-color: white;
+    background-color: #2a2a2a;
     padding: 3px 8px;
     border-radius: 10px;
     user-select: none;
@@ -213,7 +230,7 @@
         font-size: 20px;
     }
     
-    .content {
+    .content2 {
         top: 40px;
     }
     
@@ -330,7 +347,7 @@
         margin: 0;
     }
     
-    .content {
+    .content2 {
         top: 30px;
         margin: 0 10px;
         width: calc(100% - 20px);
@@ -418,7 +435,7 @@
         padding: 10px 0;
     }
     
-    .content {
+    .content2 {
         top: 25px;
         margin: 0 5px;
         width: calc(100% - 10px);

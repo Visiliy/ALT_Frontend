@@ -96,6 +96,92 @@ main {
     text-align: center;
 }
 
+.subscription-panel {
+    position: fixed;
+    right: 15px;
+    bottom: 20px;
+    width: 360px;
+    height: 240px;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.subscription-panel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 3px;
+    border-radius: 16px;
+    background: #ffffff; /* сплошная белая рамка */
+    -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    pointer-events: none;
+}
+
+.subscription-panel::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 3px;
+    border-radius: 16px;
+    background: conic-gradient(from 0deg, rgba(255,255,255,0.5), rgba(255,255,255,1), rgba(255,255,255,0.5));
+    -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    filter: blur(8px);
+    /* без анимации перелива */
+    pointer-events: none;
+}
+
+.subscription-panel .bg {
+    position: absolute;
+    inset: 0;
+    background: url('./components/IMG/subscription.jpg') center/cover no-repeat;
+    filter: saturate(110%);
+}
+
+.subscription-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 46px;
+    padding: 0 20px;
+    border-radius: 20px;
+    background: #ffffff;
+    color: #000000;
+    font-weight: 700;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+}
+
+/* удалена анимация вращения рамки */
+
+@media (max-width: 768px) {
+    .subscription-panel {
+        width: 320px;
+        height: 210px;
+        right: 10px;
+        bottom: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .subscription-panel {
+        width: calc(100% - 10px);
+        right: 5px;
+        left: 5px;
+        height: 200px;
+        bottom: 10px;
+    }
+}
+
 .search-bar {
     display: flex;
     align-items: center;

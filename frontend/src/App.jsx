@@ -71,6 +71,10 @@ function App() {
                         →
                     </button>
                 </div>
+                <div className={`subscription-panel ${regForm ? 'display_none' : ''}`}>
+                    <div className="bg"></div>
+                    <button className="subscription-btn">SUBSCRIPTION</button>
+                </div>
             </main>
             <footer></footer>
         </>

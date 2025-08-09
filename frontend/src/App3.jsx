@@ -29,6 +29,11 @@ const App3 = () => {
                 <button className="accaunt" onClick={toChat}>CHAT</button>
                 <div className="chats-history">
                     <h2 className="chats-history-title">CHATS</h2>
+                    <input
+                        className="chat-search"
+                        type="text"
+                        placeholder="Search"
+                    />
                 </div>
                 <div className="statistics">
                     <h2 className="information">INFORMATION</h2>
