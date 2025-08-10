@@ -7,6 +7,10 @@ const App3 = () => {
         location.href = "/";
     }
 
+    const toALT_PAY = () => {
+        location.href = "/alt_pay";
+    }
+
     const toChat = () => {
         location.href = "/alt";
     }
@@ -46,9 +50,12 @@ const App3 = () => {
                             <h2 className="EmailLabel">Email:</h2>
                             <h2 className="email">vasiliy@example.com</h2>
                         </div>
+                        <div className="subscription-block">
+                            <button className="subscription-button" onClick={toALT_PAY}>SUBSCRIPTION</button>
+                        </div>
                     </div>
                     <a className="edit-link" href="#">Edit</a>
-                    <button className="logout-button" onClick={logout}>Выйти</button>
+                    <button className="logout-button" onClick={logout}>Exit</button>
                 </div>
             </div>
         </>
