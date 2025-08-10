@@ -89,6 +89,12 @@
     right: 10px;
 }
 
+.inside-button:disabled {
+    border-color: #999999;
+    color: #999999;
+    cursor: not-allowed;
+}
+
 .deep_think {
     user-select: none;
     position: absolute;

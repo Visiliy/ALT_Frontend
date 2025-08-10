@@ -117,16 +117,16 @@
 }
 
 .NickName {
-    color: white;
-    font-size: 24px;
+    color: #999999;
+    font-size: 20px;
     user-select: none;
     margin: 0;
     text-align: left;
 }
 
 .nick {
-    color: #ffffff;
-    font-size: 24px;
+    color: #999999;
+    font-size: 20px;
     background-color: #2a2a2a;
     padding: 3px 8px;
     border-radius: 10px;
@@ -142,16 +142,16 @@
 }
 
 .EmailLabel {
-    color: white;
-    font-size: 24px;
+    color: #999999;
+    font-size: 20px;
     user-select: none;
     margin: 0;
     text-align: left;
 }
 
 .email {
-    color: #ffffff;
-    font-size: 24px;
+    color: #999999;
+    font-size: 20px;
     background-color: #2a2a2a;
     padding: 3px 8px;
     border-radius: 10px;
@@ -179,6 +179,21 @@
 
 .logout-button:hover {
     background-color: #c82333;
+}
+
+.edit-link {
+    position: absolute;
+    bottom: 22px;
+    right: 20px;
+    color: #999999;
+    text-decoration: none;
+    font-size: 20px;
+    user-select: none;
+    cursor: pointer;
+}
+
+.edit-link:hover {
+    text-decoration: underline;
 }
 
 .logout-button:active {

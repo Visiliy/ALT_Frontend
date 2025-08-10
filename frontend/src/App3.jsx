@@ -47,6 +47,7 @@ const App3 = () => {
                             <h2 className="email">vasiliy@example.com</h2>
                         </div>
                     </div>
+                    <a className="edit-link" href="#">Edit</a>
                     <button className="logout-button" onClick={logout}>Выйти</button>
                 </div>
             </div>

@@ -8,6 +8,7 @@ const App2 = () => {
 
     const [cnt1, setCnt1] = useState(false);
     const [cnt2, setCnt2] = useState(false);
+    const [isBusy, setIsBusy] = useState(false);
 
     const toHome = () => {
         location.href = "/";
@@ -49,7 +50,7 @@ const App2 = () => {
         
     }
 
-    const typeWriter = (element, text, speed = 50) => {
+    const typeWriter = (element, text, speed = 50, onComplete) => {
         const words = text.split(' ');
         let currentWordIndex = 0;
         
@@ -69,6 +70,8 @@ const App2 = () => {
                 });
                 
                 setTimeout(typeNextWord, speed);
+            } else if (typeof onComplete === 'function') {
+                onComplete();
             }
         };
         
@@ -81,12 +84,15 @@ const App2 = () => {
                 return;
             } else {
                 e.preventDefault();
-                click();
+                if (!isBusy) {
+                    click();
+                }
             }
         }
     }
 
     const click = () => {
+        if (isBusy) return;
         const textareaForm = document.querySelector(".textarea-wrapper");
         const textarea = document.querySelector(".text-area");
         const content = document.querySelector(".content");
@@ -94,6 +100,7 @@ const App2 = () => {
         if (!textarea.value.trim()) {
             return;
         }
+        setIsBusy(true);
         
         textareaForm.classList.add("bottom");
 
@@ -121,21 +128,35 @@ const App2 = () => {
                 request: cnt
             })
             .then((response) => {
-                load.remove();
                 const answer = document.createElement("p");
                 answer.className = "answer";
                 content.appendChild(answer);
                 
-                typeWriter(answer, response.data[0], 80);
+                typeWriter(answer, response.data[0], 80, () => {
+                    setIsBusy(false);
+                    if (load && load.parentNode) {
+                        load.remove();
+                    }
+                });
             })
             .catch((error) => {
                 console.error("Error:", error);
+                if (load && load.parentNode) {
+                    load.remove();
+                }
+                setIsBusy(false);
             });
     }
 
     const readCookie = (name) => {
-        const match = document.cookie.match(new RegExp('(?:^|; )' + name.replace(/([.$?*|{}()\[\]\\\/\+^])/g, '\\$1') + '=([^;]*)'));
-        return match ? decodeURIComponent(match[1]) : undefined;
+        const cookies = document.cookie ? document.cookie.split('; ') : [];
+        for (const cookie of cookies) {
+            const [key, ...rest] = cookie.split('=');
+            if (key === name) {
+                return decodeURIComponent(rest.join('='));
+            }
+        }
+        return undefined;
     };
 
     useEffect(() => {
@@ -168,7 +189,7 @@ const App2 = () => {
                     />
                     <button className="deep_think" onClick={click2}>DeepThink</button>
                     <button className="deeper_think" onClick={click3}>DeeperThink</button>
-                    <button className="inside-button" onClick={click}>→</button>
+                    <button className="inside-button" onClick={click} disabled={isBusy}>→</button>
                 </div>
                 <div className="content">
                 </div>
