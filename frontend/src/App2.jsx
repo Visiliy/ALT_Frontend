@@ -91,6 +91,28 @@ const App2 = () => {
         }
     }
 
+    const copyToClipboard = async (text) => {
+        try {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                await navigator.clipboard.writeText(text);
+                return true;
+            }
+        } catch {
+            // fallback below
+        }
+        try {
+            const tempTextarea = document.createElement('textarea');
+            tempTextarea.value = text;
+            document.body.appendChild(tempTextarea);
+            tempTextarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextarea);
+            return true;
+        } catch {
+            return false;
+        }
+    };
+
     const click = () => {
         if (isBusy) return;
         const textareaForm = document.querySelector(".textarea-wrapper");
@@ -131,12 +153,45 @@ const App2 = () => {
                 const answer = document.createElement("p");
                 answer.className = "answer";
                 content.appendChild(answer);
-                
+
                 typeWriter(answer, response.data[0], 80, () => {
+                    // Actions container under the model answer
+                    const actions = document.createElement('div');
+                    actions.className = 'answer-actions';
+
+                    // Copy button
+                    const copyBtn = document.createElement('button');
+                    copyBtn.className = 'action-button copy-button';
+                    copyBtn.textContent = 'Copy Text';
+                    copyBtn.addEventListener('click', async () => {
+                        const ok = await copyToClipboard(answer.innerText || '');
+                        if (ok) {
+                            const old = copyBtn.textContent;
+                            copyBtn.textContent = 'Copied!';
+                            setTimeout(() => { copyBtn.textContent = old; }, 1500);
+                        }
+                    });
+
+                    // Edit button
+                    const editBtn = document.createElement('button');
+                    editBtn.className = 'action-button edit-button';
+                    editBtn.textContent = 'Edit';
+                    editBtn.addEventListener('click', () => {
+                        // Persist text and navigate to edit page
+                        document.cookie = `editText=${encodeURIComponent(answer.innerText || '')}; max-age=600; path=/`;
+                        location.href = '/edit';
+                    });
+
+                    actions.appendChild(editBtn);
+                    actions.appendChild(copyBtn);
+                    content.appendChild(actions);
+
                     setIsBusy(false);
                     if (load && load.parentNode) {
                         load.remove();
                     }
+
+                    content.scrollTo({ top: content.scrollHeight, behavior: 'smooth' });
                 });
             })
             .catch((error) => {
@@ -165,7 +220,10 @@ const App2 = () => {
             const textarea = document.querySelector(".text-area");
             if (textarea) {
                 textarea.value = initialMessage;
-                click();
+                const sendButton = document.querySelector('.inside-button');
+                if (sendButton) {
+                    sendButton.click();
+                }
                 document.cookie = 'messege=; Max-Age=0; path=/';
             }
         }
