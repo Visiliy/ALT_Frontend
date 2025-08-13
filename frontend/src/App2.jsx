@@ -2,13 +2,57 @@ import { useState } from "react";
 import "./App2.css";
 import img_logo from "./components/IMG/logo_img.jpeg"
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 const App2 = () => {
 
     const [cnt1, setCnt1] = useState(false);
     const [cnt2, setCnt2] = useState(false);
     const [isBusy, setIsBusy] = useState(false);
+    const textareaRef = useRef(null);
+    const wrapperRef = useRef(null);
+    const contentRef = useRef(null);
+    const baseHeightRef = useRef(0);
+    const lineHeightRef = useRef(0);
+    const contentBaseHeightRef = useRef(0);
+
+    const handleAutoGrow = () => {
+        const textarea = textareaRef.current;
+        const wrapper = wrapperRef.current;
+        const content = contentRef.current;
+        if (!textarea) return;
+
+        const base = baseHeightRef.current || textarea.clientHeight;
+        const line = lineHeightRef.current || 20;
+
+        // Сначала сброс в базовую, чтобы корректно посчитать scrollHeight
+        textarea.style.height = `${base}px`;
+
+        const overflow = Math.max(0, textarea.scrollHeight - textarea.clientHeight);
+        const steps = Math.ceil(overflow / Math.max(1, line));
+        const extra = Math.min(150, steps * Math.max(1, line));
+
+        if (wrapper && wrapper.classList.contains("bottom")) {
+            // Режим внизу: растём вверх и сжимаем контент на такую же величину
+            if (content) {
+                const baseContent = contentBaseHeightRef.current || content.clientHeight;
+                if (!contentBaseHeightRef.current) contentBaseHeightRef.current = baseContent;
+                const newContentHeight = Math.max(0, baseContent - extra);
+                content.style.height = `${newContentHeight}px`;
+            }
+        }
+
+        if (overflow <= 0) {
+            // Нет переполнения — сбрасываем высоты
+            textarea.style.height = `${base}px`;
+            if (wrapper && wrapper.classList.contains("bottom") && contentRef.current && contentBaseHeightRef.current) {
+                contentRef.current.style.height = `${contentBaseHeightRef.current}px`;
+            }
+            return;
+        }
+
+        textarea.style.height = `${base + extra}px`;
+    };
 
     const toHome = () => {
         location.href = "/";
@@ -125,6 +169,16 @@ const App2 = () => {
         setIsBusy(true);
         
         textareaForm.classList.add("bottom");
+        // Сбросить инлайновую высоту при переходе вниз
+        if (textareaRef.current) {
+            textareaRef.current.style.height = "";
+        }
+        if (contentRef.current) {
+            // Сбрасываем возможное уменьшение контента
+            contentRef.current.style.height = "";
+            // Обновляем базовую высоту контента на текущую
+            contentBaseHeightRef.current = contentRef.current.clientHeight;
+        }
 
         const question = document.createElement("p");
         question.className = "question";
@@ -215,6 +269,21 @@ const App2 = () => {
     };
 
     useEffect(() => {
+        // Инициализация базовой высоты и межстрочного интервала
+        const ta = textareaRef.current;
+        if (ta) {
+            const cs = window.getComputedStyle(ta);
+            const lh = parseFloat(cs.lineHeight);
+            lineHeightRef.current = isNaN(lh) ? 20 : lh;
+            // clientHeight уже в пикселях (учитывает проценты из CSS)
+            baseHeightRef.current = ta.clientHeight;
+            // Начальный сброс инлайна
+            ta.style.height = `${baseHeightRef.current}px`;
+        }
+        if (contentRef.current) {
+            contentBaseHeightRef.current = contentRef.current.clientHeight;
+        }
+
         const initialMessage = readCookie('messege');
         if (initialMessage) {
             const textarea = document.querySelector(".text-area");
@@ -239,17 +308,19 @@ const App2 = () => {
                     </span>
                 </div>
                 <button className="accaunt" onClick={toAccount}>ACCOUNT</button>
-                <div className="textarea-wrapper">
+                <div className="textarea-wrapper" ref={wrapperRef}>
                     <textarea
                         className="text-area"
                         placeholder="Ask ALT to come up with an idea"
                         onKeyDown={handleKeyDown}
+                        onInput={handleAutoGrow}
+                        ref={textareaRef}
                     />
                     <button className="deep_think" onClick={click2}>DeepThink</button>
                     <button className="deeper_think" onClick={click3}>DeeperThink</button>
                     <button className="inside-button" onClick={click} disabled={isBusy}>→</button>
                 </div>
-                <div className="content">
+                <div className="content" ref={contentRef}>
                 </div>
             </div>
         </>
