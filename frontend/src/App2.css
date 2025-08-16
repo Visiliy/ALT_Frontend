@@ -298,14 +298,13 @@
     }
     
     .deep_think, .deeper_think {
-        font-size: 14px;
-        padding: 6px 12px;
-        height: 30px;
+        font-size: 13px;
+        padding: 5px 10px;
+        height: 28px;
+        bottom: 10px;
     }
-    
-    .deeper_think {
-        left: calc(10px + 8ch + 10px);
-    }
+    .deep_think { left: 10px; }
+    .deeper_think { left: calc(10px + 9ch + 24px); }
 }
 
 @media (max-width: 480px) {
@@ -350,13 +349,12 @@
     
     .deep_think, .deeper_think {
         font-size: 12px;
-        padding: 5px 10px;
-        height: 28px;
+        padding: 4px 9px;
+        height: 26px;
+        bottom: 8px;
     }
-    
-    .deeper_think {
-        left: calc(10px + 7ch + 10px);
-    }
+    .deep_think { left: 10px; }
+    .deeper_think { left: calc(10px + 8ch + 22px); }
     
     .inside-button {
         width: 30px;
