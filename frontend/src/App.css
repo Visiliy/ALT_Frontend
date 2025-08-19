@@ -13,10 +13,12 @@ body {
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 10vw;
-    color: white;
-    opacity: 0.1;
-    z-index: -1;
+    font-size: 13vw;
+    background-color: #000000;
+    color: #999999;
+    opacity: 0.2;
+    z-index: 100; /* над звездами */
+
     user-select: none;
     text-transform: uppercase;
     font-weight: bold;
@@ -85,6 +87,28 @@ nav a:hover {
     position: absolute;
     right: 20px;
     top: 20px;
+}
+
+.main-btn {
+    background: transparent;
+    border: 1px solid #FFFFFF;
+    color: #FFFFFF;
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+.mw-canvas {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -2; /* позади контента */
+    display: block;
 }
 
 main {
