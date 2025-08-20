@@ -107,7 +107,7 @@ nav a:hover {
     inset: 0;
     width: 100vw;
     height: 100vh;
-    z-index: -2; /* позади контента */
+    z-index: 0; /* позади контента, но над фоном body */
     display: block;
 }
 
