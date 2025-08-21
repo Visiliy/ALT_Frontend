@@ -37,7 +37,6 @@ const App5 = () => {
         setText(value);
     }, []);
 
-    // Звездный фон
     useEffect(() => {
         const canvas = canvasRef.current;
         if (!canvas) return;
@@ -212,7 +211,7 @@ const App5 = () => {
                 return true;
             }
         } catch {
-            // fallback below
+            null;
         }
         try {
             const temp = document.createElement("textarea");

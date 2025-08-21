@@ -20,8 +20,8 @@ function About() {
         let starSprite = null;
         let raf = 0;
         let lastTime = performance.now();
-        const minDistance = 16; // минимальная дистанция между звездами (px)
-        const repulsionStrength = 0.1; // сила раздвижения
+        const minDistance = 16;
+        const repulsionStrength = 0.1; 
 
         function buildStarSprite() {
             const size = 48;
@@ -80,7 +80,6 @@ function About() {
             ctx.fillStyle = '#000';
             ctx.fillRect(0, 0, width, height);
 
-            // Раздвижение звёзд, чтобы не образовывались скопления
             const cellSize = minDistance;
             const grid = new Map();
             const getKey = (cx, cy) => cx + ',' + cy;
@@ -133,7 +132,6 @@ function About() {
                 s.x += s.vx * dt * 0.5;
                 s.y += s.vy * dt * 0.6;
 
-                // Обертка по краям
                 if (s.x < -10) s.x = width + 10;
                 if (s.x > width + 10) s.x = -10;
                 if (s.y < -10) s.y = height + 10;

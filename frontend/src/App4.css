@@ -9,7 +9,6 @@
     position: relative;
 }
 
-/* Disable text selection (prevent copy) for the whole page */
 .app4, .app4 * {
     -webkit-user-select: none;
     -ms-user-select: none;
@@ -52,7 +51,6 @@
     cursor: pointer;
 }
 
-/* Altai image banner */
 .image-wrap {
     position: absolute;
     top: 10%;
@@ -184,7 +182,6 @@
     background: #0f0f0f;
     color: #ffffff;
     text-align: center;
-    /* Allow selecting/editing text in the input */
     -webkit-user-select: text;
     -ms-user-select: text;
     user-select: text;
@@ -196,7 +193,6 @@
     font-size: 16px;
 }
 
-/* Responsiveness */
 @media (max-width: 1024px) {
     .image-wrap {
         width: min(95%, 700px);

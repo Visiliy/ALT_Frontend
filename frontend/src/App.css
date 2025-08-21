@@ -17,7 +17,7 @@ body {
     background-color: #000000;
     color: #999999;
     opacity: 0.2;
-    z-index: 100; /* над звездами */
+    z-index: 100;
 
     user-select: none;
     text-transform: uppercase;
@@ -107,7 +107,7 @@ nav a:hover {
     inset: 0;
     width: 100vw;
     height: 100vh;
-    z-index: 0; /* позади контента, но над фоном body */
+    z-index: 0;
     display: block;
 }
 
@@ -136,7 +136,7 @@ main {
     inset: 0;
     padding: 3px;
     border-radius: 16px;
-    background: #ffffff; /* сплошная белая рамка */
+    background: #ffffff;
     -webkit-mask:
         linear-gradient(#000 0 0) content-box,
         linear-gradient(#000 0 0);
@@ -158,7 +158,6 @@ main {
     -webkit-mask-composite: xor;
             mask-composite: exclude;
     filter: blur(8px);
-    /* без анимации перелива */
     pointer-events: none;
 }
 
@@ -184,8 +183,6 @@ main {
     border: none;
     cursor: pointer;
 }
-
-/* удалена анимация вращения рамки */
 
 @media (max-width: 768px) {
     .subscription-panel {

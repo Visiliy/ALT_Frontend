@@ -26,7 +26,6 @@ const App2 = () => {
         const base = baseHeightRef.current || textarea.clientHeight;
         const line = lineHeightRef.current || 20;
 
-        // Сначала сброс в базовую, чтобы корректно посчитать scrollHeight
         textarea.style.height = `${base}px`;
 
         const overflow = Math.max(0, textarea.scrollHeight - textarea.clientHeight);
@@ -34,7 +33,6 @@ const App2 = () => {
         const extra = Math.min(150, steps * Math.max(1, line));
 
         if (wrapper && wrapper.classList.contains("bottom")) {
-            // Режим внизу: растём вверх и сжимаем контент на такую же величину
             if (content) {
                 const baseContent = contentBaseHeightRef.current || content.clientHeight;
                 if (!contentBaseHeightRef.current) contentBaseHeightRef.current = baseContent;
@@ -44,7 +42,6 @@ const App2 = () => {
         }
 
         if (overflow <= 0) {
-            // Нет переполнения — сбрасываем высоты
             textarea.style.height = `${base}px`;
             if (wrapper && wrapper.classList.contains("bottom") && contentRef.current && contentBaseHeightRef.current) {
                 contentRef.current.style.height = `${contentBaseHeightRef.current}px`;
@@ -143,7 +140,7 @@ const App2 = () => {
                 return true;
             }
         } catch {
-            // fallback below
+            null;
         }
         try {
             const tempTextarea = document.createElement('textarea');
@@ -170,14 +167,11 @@ const App2 = () => {
         setIsBusy(true);
         
         textareaForm.classList.add("bottom");
-        // Сбросить инлайновую высоту при переходе вниз
         if (textareaRef.current) {
             textareaRef.current.style.height = "";
         }
         if (contentRef.current) {
-            // Сбрасываем возможное уменьшение контента
             contentRef.current.style.height = "";
-            // Обновляем базовую высоту контента на текущую
             contentBaseHeightRef.current = contentRef.current.clientHeight;
         }
 
@@ -210,11 +204,9 @@ const App2 = () => {
                 content.appendChild(answer);
 
                 typeWriter(answer, response.data[0], 80, () => {
-                    // Actions container under the model answer
                     const actions = document.createElement('div');
                     actions.className = 'answer-actions';
 
-                    // Copy button
                     const copyBtn = document.createElement('button');
                     copyBtn.className = 'action-button copy-button';
                     copyBtn.textContent = 'Copy Text';
@@ -227,12 +219,10 @@ const App2 = () => {
                         }
                     });
 
-                    // Edit button
                     const editBtn = document.createElement('button');
                     editBtn.className = 'action-button edit-button';
                     editBtn.textContent = 'Edit';
                     editBtn.addEventListener('click', () => {
-                        // Persist text and navigate to edit page
                         document.cookie = `editText=${encodeURIComponent(answer.innerText || '')}; max-age=600; path=/`;
                         location.href = '/edit';
                     });
@@ -270,15 +260,12 @@ const App2 = () => {
     };
 
     useEffect(() => {
-        // Инициализация базовой высоты и межстрочного интервала
         const ta = textareaRef.current;
         if (ta) {
             const cs = window.getComputedStyle(ta);
             const lh = parseFloat(cs.lineHeight);
             lineHeightRef.current = isNaN(lh) ? 20 : lh;
-            // clientHeight уже в пикселях (учитывает проценты из CSS)
             baseHeightRef.current = ta.clientHeight;
-            // Начальный сброс инлайна
             ta.style.height = `${baseHeightRef.current}px`;
         }
         if (contentRef.current) {
@@ -299,7 +286,6 @@ const App2 = () => {
         }
     }, []);
 
-    // Фон: поле звёзд, как на About/App
     useEffect(() => {
         const canvas = canvasRef.current;
         if (!canvas) return;

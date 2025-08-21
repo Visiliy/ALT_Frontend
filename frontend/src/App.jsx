@@ -183,8 +183,6 @@ function App() {
                 if (s.x > width + 10) s.x = -10;
                 if (s.y < -10) s.y = height + 10;
                 if (s.y > height + 10) s.y = -10;
-
-                // Пропускаем рисование в области надписи ALT
                 if (rect) {
                     if (
                         s.x >= (rect.left - margin) &&
